@@ -1,0 +1,28 @@
+version: '2'
+services:
+  kanboard:
+    container_name: kanboard
+    build:
+      context: ./kanboard
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - "./data:/var/www/kanboard/data"
+      - "./plugins:/var/www/kanboard/plugins"
+      - "./ssl:/etc/nginx/ssl"
+      - "./plugins/KanboardSearchPlugin:/usr/share/php7"
+    environment:
+      DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@kanboard_db/${MYSQL_DATABASE}
+    restart: always
+  kanboard_db:
+    container_name: kanboard_db
+    image: mariadb:10.4
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    restart: always

@@ -1,0 +1,7 @@
+data/
+mysql/
+plugins/
+disabled_plugins/
+ssl/
+gitignore/
+.env
