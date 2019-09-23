@@ -40,6 +40,8 @@ mv Group_assign-master                      Group_assign
 mv plugin-calendar-master                   Calendar
 mv HighlightCodeSyntax-master               HighlightCodeSyntax
 
+cp translations.php ./plugins/KanboardSearchPlugin/Locale/ja_JP/
+
 #unzip MetaMagik-master.zip
 #mv MetaMagik-master                         MetaMagik
 #unzip kanboard_plugin_metadata-master.zip
